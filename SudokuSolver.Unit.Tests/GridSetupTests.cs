@@ -38,7 +38,7 @@ namespace SudokuSolver.Unit.Tests
 		{
 			for (int colIndex = 0; colIndex < GridSize; colIndex++)
 			{
-				var col = _blankGrid.GetColumn(colIndex).Where(b => b.Col == colIndex);
+				var col = _blankGrid.GetColumn(colIndex);
 				Assert.That(col.Count(), Is.EqualTo(GridSize));
 			}
 		}
@@ -48,7 +48,7 @@ namespace SudokuSolver.Unit.Tests
 		{
 			for (int boxIndex = 0; boxIndex < GridSize; boxIndex++)
 			{
-				var box = _blankGrid.GetBox(boxIndex).Where(b => b.Box == boxIndex);
+				var box = _blankGrid.GetBox(boxIndex);
 				Assert.That(box.Count(), Is.EqualTo(GridSize));
 			}
 		}

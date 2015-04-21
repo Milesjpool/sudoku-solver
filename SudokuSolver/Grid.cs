@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -27,24 +27,27 @@ namespace SudokuSolver
 			return _cells.Single(c => ((c.Row == rowIndex) && (c.Col == colIndex)));
 		}
 
-		public IEnumerable<Cell> GetRow(int rowIndex)
+		public CellGrouping GetRow(int rowIndex)
 		{
-			return _cells.Where(b => b.Row == rowIndex);
+			var cells = _cells.Where(b => b.Row == rowIndex);
+			return new CellGrouping(cells);
 		}
 
-		public IEnumerable<Cell> GetColumn(int colIndex)
+		public CellGrouping GetColumn(int colIndex)
 		{
-			return _cells.Where(b => b.Col == colIndex);
+			var cells = _cells.Where(b => b.Col == colIndex);
+			return new CellGrouping(cells);
 		}
 
-		public IEnumerable<Cell> GetBox(int boxIndex)
+		public CellGrouping GetBox(int boxIndex)
 		{
-			return _cells.Where(b => b.Box == boxIndex);
+			var cells = _cells.Where(b => b.Box == boxIndex);
+			return new CellGrouping(cells);
 		}
 
 		public void PutValue(int rowIndex, int colIndex, int value)
 		{
-			_cells.Single(b => (b.Row == rowIndex) && (b.Col == colIndex)).SetValue(value);
+			GetCell(rowIndex, colIndex).SetValue(value);
 		}
 	}
 }
