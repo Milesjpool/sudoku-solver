@@ -27,6 +27,15 @@
 			}
 		}
 
+		public void SolveBox(int boxIndex)
+		{
+			var box = _grid.GetBox(boxIndex);
+			foreach (var cell in box.UnsolvedCells())
+			{
+				TrySolve(cell, box);
+			}
+		}
+
 		private void TrySolve(Cell unsolvedCell, CellGrouping group)
 		{
 			foreach (var value in group.FoundValues())
